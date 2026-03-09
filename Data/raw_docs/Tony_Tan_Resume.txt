@@ -1,0 +1,98 @@
+Tony Tan - Professional Resume
+
+CONTACT INFORMATION
+Name: Tony Tan
+Location: New York, NY
+Email: Tonytan1999aol@gmail.com
+
+PROFESSIONAL SUMMARY
+Experienced technology professional specializing in Tax Technology and Transformation at Ernst & Young. Skilled in data analytics, automation, and process improvement with expertise in Python, SQL, R, and business intelligence tools. Proven track record of delivering innovative solutions for complex tax and business challenges.
+
+PROFESSIONAL EXPERIENCE
+
+Ernst & Young U.S. LLP (EY)
+Senior, Tax Technology & Transformation
+July 2025 - Present | New York, NY
+
+- Lead digital transformation initiatives for tax technology solutions
+- Develop and implement automation strategies to streamline tax processes
+- Collaborate with cross-functional teams to deliver technology-driven tax solutions
+- Mentor junior staff and provide technical guidance on complex projects
+- Drive innovation in tax data analytics and reporting
+
+Staff, Tax Technology & Transformation
+January 2023 - July 2025 | New York, NY
+
+- Designed and built automated data processing pipelines using Python and SQL
+- Created interactive dashboards and visualizations using Power BI and Alteryx
+- Implemented Azure DevOps workflows for continuous integration and deployment
+- Applied Agile methodologies to manage project deliverables and timelines
+- Conducted data analysis and quality assurance for tax compliance projects
+- Collaborated with clients to understand requirements and deliver tailored solutions
+- Developed technical documentation and training materials for end-users
+
+EDUCATION
+
+CUNY Baruch College | New York, NY
+Master of Science in Business Analytics
+- GPA: 3.75/4.0
+- Focus: Data Science, Machine Learning, Statistical Analysis
+
+Bachelor of Business Administration in Accounting
+- Foundation in financial analysis, auditing, and business strategy
+
+TECHNICAL SKILLS
+
+Programming Languages:
+- Python (Pandas, NumPy, Scikit-learn, Flask, FastAPI)
+- SQL (PostgreSQL, MySQL, SQL Server, complex queries, optimization)
+- R (Statistical analysis, data visualization, R Shiny)
+
+Data & Analytics Tools:
+- Power BI (Dashboard creation, DAX, data modeling)
+- Alteryx (Workflow automation, data blending, spatial analysis)
+- Excel (Advanced formulas, VBA, pivot tables)
+
+Cloud & DevOps:
+- Azure DevOps (CI/CD pipelines, version control, project management)
+- Git/GitHub (Version control, collaborative development)
+
+Methodologies:
+- Agile/Scrum (Sprint planning, daily standups, retrospectives)
+- Product Management (Requirements gathering, roadmap planning, stakeholder communication)
+
+PROJECTS & ACHIEVEMENTS
+
+Tax Data Automation Platform
+- Built end-to-end automation solution processing 10,000+ tax records daily
+- Reduced manual processing time by 75% through Python scripting and SQL optimization
+- Implemented error handling and logging for production reliability
+
+Business Intelligence Dashboard Suite
+- Developed suite of Power BI dashboards for executive reporting
+- Integrated multiple data sources using Alteryx workflows
+- Enabled real-time decision making for tax leadership
+
+Azure DevOps Migration
+- Led migration of legacy projects to Azure DevOps
+- Established CI/CD pipelines for automated testing and deployment
+- Trained team members on Git workflows and best practices
+
+CERTIFICATIONS & TRAINING
+- EY Technology Certification Program
+- Agile Project Management Training
+- Data Analytics and Visualization (Power BI, Alteryx)
+
+PROFESSIONAL INTERESTS
+- Artificial Intelligence and Machine Learning applications in business
+- Process automation and robotic process automation (RPA)
+- Data engineering and pipeline architecture
+- Technology consulting and digital transformation
+
+LANGUAGES
+- English (Native)
+
+REFERENCES
+Available upon request
+
+Last Updated: March 2026

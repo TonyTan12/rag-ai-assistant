@@ -1,0 +1,7 @@
+“Success metrics: 90% citation accuracy, 70% first-answer resolution.”
+
+“Escalation path: if unsure, respond ‘I don’t know…’ and route to human.”
+
+“Allowed sources: only documents in the knowledge base.”
+
+“Do not answer from memory.”

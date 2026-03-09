@@ -1,0 +1,1 @@
+& "D:\tonyt\OpenAI Retrieval Augmented Generation\.venv\Scripts\python.exe" -m uvicorn api:app --reload

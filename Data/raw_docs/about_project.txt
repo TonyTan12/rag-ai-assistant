@@ -1,0 +1,54 @@
+AI Implementation Lab – RAG System Overview
+
+This project implements a Retrieval-Augmented Generation (RAG) architecture.
+The system combines vector search with large language models.
+The goal is to provide grounded, citation-based answers.
+The system is designed for experimentation and production readiness.
+The backend API is built using FastAPI.
+The API exposes a POST /query endpoint.
+The API also exposes a GET /health endpoint.
+The vector database used in this system is ChromaDB.
+Embeddings are generated using OpenAI models.
+Documents are chunked before being embedded.
+Each chunk is stored with metadata.
+Metadata includes source filename.
+Metadata may include page numbers.
+Metadata includes chunk index.
+The RAG pipeline first retrieves relevant chunks.
+Retrieval is currently vector-based.
+Future versions may include hybrid retrieval.
+Hybrid retrieval may combine BM25 and vector similarity.
+The system includes refusal logic.
+If no relevant information is found, it responds with "I don't know."
+The model is instructed not to answer from memory.
+Only retrieved documents should influence the answer.
+The API supports a debug mode.
+Debug mode returns retrieved chunks.
+Non-debug mode returns answer and citations only.
+Citations are derived from chunk metadata.
+The system is designed with layered architecture.
+The layers include ingestion, retrieval, generation, and API.
+Ingestion reads documents from a local folder.
+Documents are persisted into a Chroma collection.
+The collection is stored on disk.
+The system can be restarted without re-ingesting.
+The API response is structured using Pydantic models.
+The response schema includes answer.
+The response schema includes citations.
+The response schema optionally includes retrieved chunks.
+The system is intended to be extendable.
+Future improvements include evaluation harness.
+Future improvements include latency monitoring.
+Future improvements include async handling.
+The system is environment-isolated using a virtual environment.
+Dependencies are frozen in requirements.txt.
+The API can be tested using Swagger UI.
+Swagger is available at /docs.
+The system is currently in prototype phase.
+The prototype demonstrates full RAG flow.
+The system supports configurable top-k retrieval.
+The default top-k is 6.
+The system is designed for controlled experimentation.
+The architecture separates concerns cleanly.
+This project serves as a foundation for advanced AI systems.
+End of document.
