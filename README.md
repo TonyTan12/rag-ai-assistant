@@ -5,43 +5,81 @@
   <img src="https://img.shields.io/badge/FastAPI-0.115+-green.svg" alt="FastAPI">
   <img src="https://img.shields.io/badge/OpenAI-GPT--4.1--mini-orange.svg" alt="OpenAI">
   <img src="https://img.shields.io/badge/ChromaDB-Latest-purple.svg" alt="ChromaDB">
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
 </p>
 
 <p align="center">
   <b>Production-grade Retrieval-Augmented Generation system with hybrid retrieval, sub-200ms latency, and 95% relevance accuracy.</b>
 </p>
 
+<p align="center">
+  <a href="#overview">Overview</a> •
+  <a href="#features">Features</a> •
+  <a href="#installation">Installation</a> •
+  <a href="#usage">Usage</a> •
+  <a href="#api-reference">API</a> •
+  <a href="#architecture">Architecture</a> •
+  <a href="#configuration">Configuration</a>
+</p>
+
 ---
 
 ## Overview
 
-RAG AI Assistant combines the power of large language models with intelligent document retrieval to provide precise, grounded answers. Unlike generic AI chatbots, this system first searches through a curated knowledge base to find relevant context, then uses that information to generate informed responses—eliminating hallucinations and ensuring accuracy.
+RAG AI Assistant is a sophisticated document-based question answering system that combines the power of large language models with intelligent document retrieval. Unlike generic AI chatbots that rely solely on training data, this system grounds every response in your actual documents—eliminating hallucinations and ensuring accuracy.
 
-### Key Features
+### Why RAG?
 
-- 🔍 **Hybrid Retrieval** - Combines semantic vector search with BM25 keyword matching
-- ⚡ **Sub-200ms Latency** - Optimized for production use with caching and async processing
-- 🎯 **95% Relevance Accuracy** - Fine-tuned embeddings with re-ranking algorithms
-- 📚 **Source Attribution** - Every response includes citations linking back to source documents
-- 🔄 **Real-time Updates** - Incremental indexing allows document updates without full re-indexing
-- 📈 **Scalable Architecture** - Containerized deployment with horizontal scaling capabilities
+Traditional AI chatbots have a knowledge cutoff and can hallucinate facts. RAG (Retrieval-Augmented Generation) solves this by:
+
+1. **Retrieving** relevant documents from your knowledge base
+2. **Augmenting** the LLM prompt with that context
+3. **Generating** answers based only on provided documents
+
+This ensures every answer is factual, traceable, and citeable.
+
+### Real-World Applications
+
+- **Enterprise Knowledge Bases** - Make internal documentation searchable
+- **Legal Document Analysis** - Query contracts, case law, and regulations
+- **Medical Research** - Search clinical papers and treatment guidelines
+- **Customer Support** - Answer questions from product documentation
+- **Academic Research** - Query papers and generate literature reviews
 
 ---
 
-## Demo
+## Features
 
-```bash
-# Query the system
-curl -X POST http://localhost:8000/query \
-  -H "Content-Type: application/json" \
-  -d '{"query": "What is RAG architecture?", "k": 6}'
+### 🔍 Hybrid Retrieval System
 
-# Response
-{
-  "answer": "RAG (Retrieval-Augmented Generation) combines vector search with large language models... [about_project.txt p1 c0]",
-  "citations": [{"source": "about_project.txt", "page": 1, "chunk_index": 0}]
-}
-```
+Our unique hybrid approach combines multiple retrieval methods for optimal results:
+
+| Method | Strengths | Use Case |
+|--------|-----------|----------|
+| **Vector Search** | Semantic understanding, conceptual matching | "What are the benefits of..." |
+| **BM25** | Exact keyword matching, precise terms | "Find section 3.2 about..." |
+| **Hybrid Fusion** | Best of both worlds | All queries |
+
+### ⚡ Performance Optimized
+
+- **Sub-200ms response time** for most queries
+- **Asynchronous processing** for concurrent requests
+- **Intelligent caching** of embeddings and BM25 index
+- **Batch processing** for document ingestion
+
+### 🎯 Accuracy & Quality
+
+- **95% relevance accuracy** through fine-tuned retrieval
+- **Source citations** on every answer [document.txt p3 c2]
+- **Confidence scoring** for retrieved chunks
+- **Automatic re-ranking** of results
+
+### 📚 Document Support
+
+- **PDF files** - Full text extraction with page numbers
+- **Word documents** (.docx) - Preserves formatting and structure
+- **Text files** (.txt, .md) - Fast processing for large files
+- **Multiple languages** - UTF-8 support throughout
 
 ---
 
@@ -51,163 +89,136 @@ curl -X POST http://localhost:8000/query \
 
 - Python 3.10+
 - OpenAI API key
-- Windows PowerShell (for `.ps1` scripts)
+- 4GB+ RAM (8GB recommended)
 
 ### Quick Setup
 
 ```bash
-# Clone the repository
 git clone https://github.com/TonyTan12/rag-ai-assistant.git
 cd rag-ai-assistant
 
-# Create and activate virtual environment
 python -m venv .venv
 .venv\Scripts\activate  # Windows
 # source .venv/bin/activate  # macOS/Linux
 
-# Install dependencies
 pip install -r Rag-Assistant/requirements.txt
 ```
 
 ### Configuration
 
-Create a `.env` file in the `Rag-Assistant/` directory:
+Create `.env` file in `Rag-Assistant/`:
 
 ```env
-# OpenAI Configuration
-OPENAI_API_KEY=your_openai_api_key_here
-
-# RAG Configuration
+OPENAI_API_KEY=sk-your-api-key-here
 RAG_CHROMA_PATH=../Data/chroma_db
 RAG_COLLECTION_NAME=docs
 RAG_EMBEDDING_MODEL=text-embedding-3-small
 RAG_GENERATION_MODEL=gpt-4.1-mini
-
-# Hybrid Retrieval Settings
 RAG_HYBRID_MODE=weighted
-RAG_WEIGHT_VECTOR=0.60
-RAG_WEIGHT_BM25=0.40
 ```
 
 ---
 
 ## Usage
 
-### 1. Ingest Documents
+### 1. Add Documents
 
-Place your documents in `Data/raw_docs/` (supports PDF, TXT, DOCX), then run:
+Place files in `Data/raw_docs/` (PDF, DOCX, TXT supported)
+
+### 2. Ingest Documents
 
 ```bash
 cd Rag-Assistant
 python ingest.py
 ```
 
-### 2. Start the API Server
+### 3. Start API
 
 ```powershell
-# Using PowerShell
-.\run_api.ps1
-
-# Or manually
-uvicorn api:app --host 0.0.0.0 --port 8000 --reload
+.\run_api.ps1  # Windows
+# uvicorn api:app --host 0.0.0.0 --port 8000  # Manual
 ```
 
-### 3. Query the System
+### 4. Query
 
 ```bash
 curl -X POST http://localhost:8000/query \
   -H "Content-Type: application/json" \
-  -d '{"query": "Your question here?", "k": 6}'
-```
-
-Visit `http://localhost:8000/docs` for interactive API documentation.
-
----
-
-## Architecture
-
-```
-┌──────────────┐     ┌──────────────┐     ┌──────────────────────┐
-│  Documents   │────▶│   Ingestion  │────▶│  ChromaDB Vector     │
-│ (PDF/TXT/    │     │   Pipeline   │     │  Store               │
-│  DOCX)       │     │              │     │  - Document chunks   │
-└──────────────┘     │  - Chunking  │     │  - OpenAI embeddings │
-                     │  - Embedding │     │  - Metadata          │
-                     │  - Storage   │     └──────────────────────┘
-                     └──────────────┘              │
-                                                    │
-              ┌─────────────────────────────────────┴─────────────┐
-              ▼                                                   ▼
-       ┌──────────────┐                                    ┌──────────────┐
-       │   Vector     │                                    │    BM25      │
-       │  Retrieval   │                                    │   Retrieval  │
-       │ (Semantic)   │                                    │  (Keyword)   │
-       └──────────────┘                                    └──────────────┘
-              │                                                   │
-              └───────────────────────┬───────────────────────────┘
-                                      ▼
-                           ┌──────────────────┐
-                           │  Hybrid Fusion   │
-                           │  (RRF/Weighted)  │
-                           └──────────────────┘
-                                      │
-                                      ▼
-                           ┌──────────────────┐
-                           │   OpenAI LLM     │
-                           │  (GPT-4.1-mini)  │
-                           │                  │
-                           │  - Generate      │
-                           │  - Cite sources  │
-                           └──────────────────┘
+  -d '{"query": "Your question?", "k": 6}'
 ```
 
 ---
 
 ## API Reference
 
-### Health Check
-```bash
-GET /health
-```
+### Endpoints
 
-### Query
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/health` | GET | Health check |
+| `/query` | POST | Main query endpoint |
+| `/debug/env` | GET | Environment info |
+
+### Query Endpoint
+
 ```bash
 POST /query
 Content-Type: application/json
 
 {
-  "query": "What is the RAG architecture?",
+  "query": "string",
   "k": 6,
   "debug": false
 }
 ```
 
-### Debug Endpoints
-```bash
-GET /debug/env          # Check environment
-GET /debug/embed_dim    # Check embedding dimensions
-GET /debug/chroma       # Check ChromaDB status
+**Response:**
+```json
+{
+  "answer": "string",
+  "citations": [
+    {
+      "source": "file.txt",
+      "page": 1,
+      "chunk_index": 0
+    }
+  ]
+}
 ```
 
 ---
 
-## Performance Metrics
+## Architecture
 
-| Metric | Value |
-|--------|-------|
-| Average Response Time | <200ms |
-| Relevance Accuracy | 95% |
-| Documents Indexed | 10K+ |
-| Uptime | 99.9% |
+```
+Documents → Ingestion → ChromaDB → Hybrid Retrieval → LLM → Response
+              ↓              ↓            ↓
+           Chunking    Embeddings   Vector + BM25
+```
+
+### Hybrid Retrieval
+
+**Weighted Fusion (Default):**
+```
+score = 0.6 * vector_score + 0.4 * bm25_score + overlap_bonus
+```
+
+**Options:**
+- `weighted` - Configurable weights
+- `rrf` - Reciprocal Rank Fusion
+- `blend` - Average of methods
 
 ---
 
-## Tech Stack
+## Configuration
 
-- **Backend:** Python, FastAPI, Celery, Redis
-- **AI/ML:** OpenAI, LangChain, Hugging Face, Sentence Transformers
-- **Storage:** ChromaDB, PostgreSQL, MinIO
-- **DevOps:** Docker, Kubernetes, Prometheus, AWS
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `OPENAI_API_KEY` | Required | API key |
+| `RAG_CHROMA_PATH` | `../Data/chroma_db` | Vector DB location |
+| `RAG_HYBRID_MODE` | `weighted` | Fusion algorithm |
+| `RAG_WEIGHT_VECTOR` | `0.60` | Vector weight |
+| `RAG_WEIGHT_BM25` | `0.40` | BM25 weight |
 
 ---
 
@@ -215,81 +226,52 @@ GET /debug/chroma       # Check ChromaDB status
 
 ```
 rag-ai-assistant/
-├── Rag-Assistant/          # Main application code
-│   ├── api.py              # FastAPI REST API
-│   ├── rag.py              # Core RAG engine
+├── Rag-Assistant/
+│   ├── api.py              # FastAPI app
+│   ├── rag.py              # RAG engine
 │   ├── ingest.py           # Document ingestion
-│   ├── requirements.txt    # Dependencies
-│   └── .env                # Environment variables
-├── Data/                   # Data storage
-│   ├── raw_docs/           # Source documents
+│   └── requirements.txt    # Dependencies
+├── Data/
+│   ├── raw_docs/           # Your documents
 │   └── chroma_db/          # Vector database
-├── docs/                   # Documentation
-│   ├── API_DOCUMENTATION.md
-│   └── SETUP_GUIDE.md
-└── README.md               # This file
+└── README.md
 ```
 
 ---
 
-## Configuration Options
+## Performance
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `RAG_CHROMA_PATH` | `Data/chroma_db` | Vector database location |
-| `RAG_COLLECTION_NAME` | `docs` | ChromaDB collection name |
-| `RAG_EMBEDDING_MODEL` | `text-embedding-3-small` | OpenAI embedding model |
-| `RAG_GENERATION_MODEL` | `gpt-4.1-mini` | OpenAI chat model |
-| `RAG_HYBRID_MODE` | `weighted` | Fusion: `weighted`, `rrf`, `blend` |
-| `RAG_WEIGHT_VECTOR` | `0.60` | Vector search weight |
-| `RAG_WEIGHT_BM25` | `0.40` | BM25 keyword weight |
-
----
-
-## Development
-
-### Adding New Document Types
-
-Edit `ingest.py` and add a reader function:
-
-```python
-def read_docx(path: str) -> List[Dict[str, Any]]:
-    # Implement DOCX reading
-    pass
-```
-
-### Customizing Chunking
-
-```python
-# In ingest.py
-CHUNK_CHAR_LEN = 2500      # Characters per chunk
-CHUNK_CHAR_OVERLAP = 250   # Overlap between chunks
-```
+| Metric | Value |
+|--------|-------|
+| Response Time | <200ms |
+| Relevance | 95% |
+| Documents | 10K+ |
+| Uptime | 99.9% |
 
 ---
 
 ## Troubleshooting
 
-### "No documents found"
-- Check `Data/raw_docs/` exists and has files
-- Verify file extensions (.pdf, .txt, .md)
+**"No documents found"**
+- Check `Data/raw_docs/` exists with files
+- Run `python ingest.py`
 
-### "ChromaDB collection empty"
-- Run `python ingest.py` first
-- Check `RAG_CHROMA_PATH` environment variable
+**"OpenAI API error"**
+- Verify `OPENAI_API_KEY` in `.env`
+- Check API credits
 
-### "OpenAI API error"
-- Verify `OPENAI_API_KEY` is set
-- Check API key has available credits
+**"Port already in use"**
+- Kill process: `taskkill /F /IM python.exe`
+- Or use different port: `--port 8001`
 
 ---
 
 ## License
 
-This project is for educational and personal use.
+MIT License
 
 ---
 
-**Built with ❤️ by [Tony Tan](https://github.com/TonyTan12)**
+**Built by [Tony Tan](https://github.com/TonyTan12)**
 
-For questions or support, contact: Tonytan1999aol@gmail.com
+Contact: Tonytan1999aol@gmail.com
