@@ -29,7 +29,7 @@
 
 RAG AI Assistant is a sophisticated document-based question answering system that combines the power of large language models with intelligent document retrieval. Unlike generic AI chatbots that rely solely on training data, this system grounds every response in your actual documents—eliminating hallucinations and ensuring accuracy.
 
-**Built by:** Tony Tan, Tax Technology & Transformation at EY  
+**Built by:** Tony Tan
 **Purpose:** Demonstrate production-ready AI implementation skills for enterprise use cases
 
 ### What Problem Does This Solve?
@@ -658,5 +658,4 @@ MIT License - See LICENSE file
 ---
 
 **Built by [Tony Tan](https://github.com/TonyTan12)**  
-AI Product Manager | EY  
 📧 Tonytan1999aol@gmail.com
